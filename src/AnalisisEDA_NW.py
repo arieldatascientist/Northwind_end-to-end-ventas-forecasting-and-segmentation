@@ -18,6 +18,8 @@ query1 = '''
            '''
 
 clientes = pd.read_sql_query(query1, conn) 
+
+#Limpieza y análisis
 print(clientes.info)
 print(clientes.describe())
 print(clientes.index.duplicated().any())
@@ -51,4 +53,14 @@ plt.grid()
 plt.show()  
 
 #El peor cliente es Franchi S.p.A. con $62.46 USD 
+
+#Ventas por producto
+
+query2 = '''
+        SELECT p.ProductName as Producto, SUM(od.Quantity) as UnidadesVendidas, SUM(od.Quantity * p.Price) as MontoVendido FROM Products p
+        JOIN OrderDetails od ON p.ProductID = od.ProductID
+        GROUP BY p.ProductName 
+        ORDER BY MontoVendido DESC 
+         '''
+
 
