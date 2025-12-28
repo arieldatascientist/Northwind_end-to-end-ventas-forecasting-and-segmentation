@@ -132,6 +132,8 @@ query6 = '''
 
 ventas_dia = pd.read_sql_query(query6, conn)
 ventas_dia_limpio = limpieza(ventas_dia)
+ventas_dia_limpio["Fecha"] = pd.to_datetime(ventas_dia_limpio["Fecha"])
+ventas_dia_limpio = ventas_dia_limpio.set_index("Fecha")
 ventas_dia_limpio.to_csv(DATA_PROCESSED / "Ventas_dia.csv", index=True)
 
 conn.close()
