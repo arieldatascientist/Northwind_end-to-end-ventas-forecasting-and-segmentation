@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 from sklearn.metrics import mean_squared_error, mean_absolute_error
+from pathlib import Path
 
 class NorthwindForecaster:
     def __init__(self, experiment_name="Ventas_Northwind"):
@@ -53,7 +54,7 @@ class NorthwindForecaster:
 
             # Guardamos el modelo para uso futuro
             mlflow.statsmodels.log_model(model_fit, registered_model_name="ARIMA NorthWind ventas"
-                                         , artifact_path="data/processed")
+                                         , artifact_path="model")
             
             #Reentrenamiento 100% datos
 
@@ -62,10 +63,39 @@ class NorthwindForecaster:
             
             return final_model
 
-    def forecast(self, final_model, steps): #Pronosticos
+    def forecaster(self, final_model, steps): #Pronosticos
       
         forecast_log = final_model.forecast(steps)
         forecast_real = np.exp(forecast_log)
         
         return forecast_real
     
+
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+ruta_csv = BASE_DIR / "data" / "processed" / "Ventas_dia.csv"
+Data_final = BASE_DIR / "data" / "processed"
+
+ventas = pd.read_csv(ruta_csv)
+ventas["Fecha"]= pd.to_datetime(ventas["Fecha"])
+ventas = ventas.set_index("Fecha")
+
+serie_ventas = ventas["Monto"]
+
+ventas_arima = NorthwindForecaster(experiment_name="Northwind_forecasting")
+
+orden_arima = (1, 0, 1)
+
+ventas_modelo = ventas_arima.train_and_log(serie_ventas, order=orden_arima)
+
+pronostico = ventas_arima.forecaster(ventas_modelo, steps=10)
+
+fechas_futuras = pd.date_range(start=ventas.index[-1], periods=10 + 1, freq='B')[1:]
+serie_prediccion = pd.Series(pronostico.values, index=fechas_futuras)
+
+print(serie_prediccion)
+
+
+
+serie_prediccion.to_csv(Data_final / "Pronostico_10_días_ventas.csv", index=True)
+
