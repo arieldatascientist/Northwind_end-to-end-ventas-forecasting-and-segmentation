@@ -8,6 +8,7 @@ from pathlib import Path
 
 class NorthwindForecaster:
     def __init__(self, experiment_name="Ventas_Northwind"):
+        mlflow.set_tracking_uri("sqlite:///mlflow.db")
         self.experiment_name = experiment_name
         mlflow.set_experiment(self.experiment_name)
 
