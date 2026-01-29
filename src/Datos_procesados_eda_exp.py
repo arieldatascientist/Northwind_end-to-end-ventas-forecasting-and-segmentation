@@ -136,4 +136,18 @@ ventas_dia_limpio["Fecha"] = pd.to_datetime(ventas_dia_limpio["Fecha"])
 ventas_dia_limpio = ventas_dia_limpio.set_index("Fecha")
 ventas_dia_limpio.to_csv(DATA_PROCESSED / "Ventas_dia.csv", index=True)
 
+query7 = ''' 
+        SELECT c.CustomerName as NombreCliente, SUM(od.Quantity) as UnidadesCompradas, sum(od.Quantity * p.Price) AS Monto, 
+        count(DISTINCT o.OrderID) as NumeroDeOrdenes, AVG(od.Quantity * p.Price) AS TicketPromedio, 
+        c.Country as Pais, COUNT(DISTINCT p.CategoryID) AS DiversidadCategorias FROM Customers c
+        JOIN Orders o ON c.CustomerID = o.CustomerID
+        JOIN OrderDetails od ON o.OrderID = od.OrderID
+        JOIN Products P ON od.ProductID = p.ProductID
+        GROUP BY c.CustomerName
+        ORDER BY Monto DESC 
+'''
+features_cluster = pd.read_sql_query(query7, conn)
+features_cluster_limpio = limpieza(features_cluster)
+features_cluster_limpio.to_csv(DATA_PROCESSED / "Features_clusters.csv", index=False)
+
 conn.close()
