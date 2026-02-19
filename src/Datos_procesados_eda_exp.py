@@ -104,7 +104,7 @@ ORDER BY Pais;
 '''
 
 pais_preferencia = pd.read_sql_query(query4, conn)
-pais_preferencia_limpio = limpieza(ventas_productos)
+pais_preferencia_limpio = limpieza(pais_preferencia)
 pais_preferencia_limpio.to_csv(DATA_PROCESSED / "Paises_preferencias.csv", index=False)
 
 #Empleados info
