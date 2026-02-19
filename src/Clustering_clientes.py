@@ -61,7 +61,7 @@ def preprocesar_datos(df):
     return pca_data, scaler, pca
 
 def main(df):
-    """Función Orquestadora Principal"""
+    
     
     # Iniciamos el experimento en MLflow
     mlflow.set_experiment("Northwind_Clustering_Segmentation")
