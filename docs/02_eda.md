@@ -40,21 +40,79 @@ Durante el proceso de src/Datos_procesados_eda se realizaron las siguientes acci
 
 ## Hallazgos Clave
 
-### 1. Tendencia Temporal
+## 1 Concentración de ingresos
 
-Se identificó el comportamiento histórico de ventas y posibles patrones de crecimiento o estabilidad.
+Se identificó una fuerte concentración en la generación de ingresos:
 
-### 2. Concentración de Ventas
+- El **51.1%** de las ventas proviene de los **10 mejores clientes**.
+- El **47.6%** del ingreso total es generado por los **10 productos más rentables**.
+- El **86.2%** de las ventas se concentra en los **10 países con mayor facturación**.
+- El **77% de los clientes** se encuentra en esos mismos países.
 
-Se observó concentración en ciertos países y productos, lo que sugiere dependencia de mercados específicos.
+ **Implicación:**  
+El negocio presenta una estructura tipo *Pareto*, donde una fracción reducida de entidades genera la mayor parte del ingreso. Esto implica riesgo de dependencia y oportunidad de optimización estratégica.
 
-### 3. Distribución de Clientes
+---
 
-Se detectó variabilidad significativa en el comportamiento de compra entre clientes.
+## 2 Alta dispersión y presencia de outliers
 
-### 4. Variabilidad de Ventas
+Se observó una dispersión considerable en:
 
-La volatilidad en ciertos periodos justificó el uso de técnicas de suavizado como media móvil para analizar tendencia.
+- Monto por cliente
+- Monto por país
+- Unidades vendidas por producto
+- Ventas diarias
+
+Las desviaciones estándar elevadas y amplias distancias intercuartiles confirman heterogeneidad significativa en el comportamiento de compra.
+
+ **Implicación:**  
+Existen clientes corporativos de alto valor coexistiendo con clientes ocasionales, lo que sugiere potencial para segmentación futura.
+
+---
+
+## 3 Precio vs Volumen
+
+La correlación de Spearman entre precio y unidades vendidas fue **0.131**, indicando ausencia de relación significativa.
+
+- Productos caros pueden vender altos volúmenes.
+- Productos baratos no garantizan alta rotación.
+- Los ingresos dependen más del posicionamiento que del precio absoluto.
+
+ **Implicación:**  
+Las decisiones de pricing deben evaluarse junto con margen y estrategia comercial, no únicamente con base en volumen.
+
+---
+
+## 4 Desempeño comercial
+
+Se detectó alta variabilidad entre empleados en:
+
+- Número de órdenes
+- Unidades vendidas
+- Ingresos generados
+
+ **Implicación:**  
+Podría existir oportunidad de análisis adicional sobre asignación de cuentas, experiencia o estrategias comerciales diferenciadas.
+
+---
+
+## 5 Comportamiento temporal de las ventas
+
+El análisis de la serie diaria mostró:
+
+- Ausencia de estacionalidad clara.
+- Sin tendencia marcada.
+- Alta varianza
+- ACF con caída rápida.
+- PACF de corto alcance.
+- Estacionariedad confirmada mediante prueba de Dickey-Fuller.
+- Diferenciación requerida: 0.
+
+ **Conclusión técnica:**  
+La serie es estacionaria y compatible con modelos de bajo orden como:
+
+- Suavización Exponencial Simple
+- ARIMA con componentes mínimos
 
 ---
 
