@@ -28,6 +28,7 @@ Se trabajó principalmente con información histórica de ventas para construir 
 
 Durante el proceso de src/Datos_procesados_eda se realizaron las siguientes acciones:
 
+- Extracción (Querys)
 - Verificación de valores nulos
 - Revisión de duplicados
 - imputación 
