@@ -59,7 +59,12 @@ mlruns/
 # =========================================
 # ARCHIVOS DE DATOS GRANDES
 # =========================================
-data/
+data/*
+
+#Excepto
+
+!data/NorthWinddb.zip
+!data/Northwind_E-R_Diagram.png
 datasets/
 *.csv
 *.xlsx
