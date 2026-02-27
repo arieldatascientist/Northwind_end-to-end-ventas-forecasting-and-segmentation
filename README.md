@@ -1,4 +1,4 @@
-# Proyecto de Ciencia de Datos — Northwind
+# Northwind_end-to-end-ventas-forecasting-and-segmentation
 
 ## Descripción
 
@@ -109,7 +109,7 @@ Ver: `docs/05_dashboard.md`
 ##  Estructura del Proyecto
 
 ```text
-Proyecto-ciencia-de-datos/
+Northwind_end-to-end-ventas-forecasting-and-segmentation/
 │
 ├── notebooks/
 │   ├── EDA_Morthwind.ipynb
