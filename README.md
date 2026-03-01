@@ -6,6 +6,14 @@ Este proyecto tiene como objetivo analizar el desempeño del negocio utilizando 
 
 Se integran técnicas de análisis exploratorio, modelado predictivo, clustering y visualización en Power BI.
 
+- Dashnoard preview
+
+![Dashboard](docs/Dashboard%20imagenes/2026-02-24%20(1).png)
+
+- Mlflow preview
+
+![Mlflow](docs/Mlflow%20runs%20imagenes/DBSCAN/2026-01-27%20(9).png)
+
 ---
 
 ## Objetivos
